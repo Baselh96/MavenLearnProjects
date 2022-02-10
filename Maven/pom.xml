@@ -1,0 +1,61 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  
+  <!-- Der erste wichtige Teil: Name des Proejkts-->
+  <!-- Der Name besteht aus groupId und artifactId und die beide dienen 
+  	zum eindeutigen Identifikation des Projekts -->
+  <groupId>com.mavenproject</groupId>
+  <artifactId>first-maven-project</artifactId>
+  
+  <!-- Hier wird die Version des Projekts angegeben-->
+  <!-- Snapshot gibt an, dass diese Anwendung in Entwicklung ist-->
+  <version>0.0.1-SNAPSHOT</version>
+  
+  <!-- es definiert, was wir aus diese Anwendung haben wollen und 
+  default-packaging ist jar. D.h. nach dem Build bekommen wir ein Jar Datei-->
+  <packaging>jar</packaging>
+  
+  <properties> 
+	   <maven.compiler.source>1.8</maven.compiler.source>
+	   <maven.compiler.target>1.8</maven.compiler.target>
+  </properties>
+  
+  <!-- Dieser Teil ist auch sehr wichtig, da wir hierdurch die Dependency 
+   von anderen Framework in diese Anwendung hinzufügen-->
+  <dependencies>
+	<dependency>
+	    <groupId>junit</groupId>
+	    <artifactId>junit</artifactId>
+	    <version>4.13.2</version>
+	    <scope>test</scope>
+	</dependency>
+	<dependency>
+	    <groupId>org.hibernate</groupId>
+	    <artifactId>hibernate-core</artifactId>
+	    <version>5.6.5.Final</version>
+	    <exclusions>
+	    	<!-- Hiermit schließe ich diese Dependency von dieser Dependency aus-->
+	    	<exclusion>
+	    		<groupId>org.jboss.logging</groupId>
+      			<artifactId>jboss-logging</artifactId>
+	    	</exclusion>
+	    </exclusions>
+	</dependency>
+  </dependencies>
+  
+  <build>
+  	<plugins>
+  		<plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <!-- Hier ändern wir die Version vom Projekt für 
+        	z.B. Verwendung einer höheren Javaversion-->
+        <configuration>
+        	<source>1.8</source>
+        	<target>1.8</target>
+        </configuration>
+      </plugin>
+  	</plugins>
+  </build>
+</project>
